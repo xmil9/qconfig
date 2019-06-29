@@ -1,2 +1,2 @@
 # qconfig
-Library to load/save configuration settings.
+Quick config library to load/save configuration settings.
