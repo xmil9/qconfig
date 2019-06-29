@@ -1,0 +1,4 @@
+# comment for a
+a=1
+   # comment prefixed with spaces
+b=two
