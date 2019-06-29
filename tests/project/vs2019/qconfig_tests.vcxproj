@@ -38,11 +38,13 @@
     <ClCompile Include="..\..\config_tests.cpp" />
     <ClCompile Include="..\..\file_storage_tests.cpp" />
     <ClCompile Include="..\..\qconfig_tests.cpp" />
+    <ClCompile Include="..\..\registry_storage_tests.cpp" />
     <ClCompile Include="..\..\test_util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\config_tests.h" />
     <ClInclude Include="..\..\file_storage_tests.h" />
+    <ClInclude Include="..\..\registry_storage_tests.h" />
     <ClInclude Include="..\..\test_util.h" />
   </ItemGroup>
   <ItemGroup>

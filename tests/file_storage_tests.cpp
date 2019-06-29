@@ -173,7 +173,7 @@ void testFileStorageRoundtrip(const fs::path& dataDir)
       config.setInt32("int8", 8);
       config.setFloat("float", 1.23456f);
       config.setDouble("double", 12345.678);
-      config.setLongDouble("long double", 0.12345678);
+      config.setLongDouble("long double", 0.123456L);
       config.setBool("bool", true);
       config.setString("string", "my string");
       config.setWString("wstring", L"my wstring");
@@ -193,7 +193,7 @@ void testFileStorageRoundtrip(const fs::path& dataDir)
          VERIFY(loadedConfig.getInt8("int8") == 8, caseLabel);
          VERIFY(loadedConfig.getFloat("float") == 1.23456f, caseLabel);
          VERIFY(loadedConfig.getDouble("double") == 12345.678, caseLabel);
-         VERIFY(loadedConfig.getLongDouble("long double") == 0.12345678L, caseLabel);
+         VERIFY(loadedConfig.getLongDouble("long double") == 0.123456L, caseLabel);
          VERIFY(loadedConfig.getBool("bool") == true, caseLabel);
          VERIFY(loadedConfig.getString("string") == "my string", caseLabel);
          VERIFY(loadedConfig.getWString("wstring") == L"my wstring", caseLabel);
