@@ -48,7 +48,10 @@
     <ClInclude Include="..\..\test_util.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\project\vs2019\qconfig.vcxproj">
+    <ProjectReference Include="..\..\..\dependencies\win32_util\project\win32_util.vcxproj">
+      <Project>{d00761bd-4896-40ba-97af-5442729b11ff}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\project\vs\qconfig.vcxproj">
       <Project>{a2a4860f-2a2a-49d0-a7ae-9e04d008542f}</Project>
     </ProjectReference>
   </ItemGroup>

@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "essentutils", "..\..\depend
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win32_util", "..\..\dependencies\win32_util\project\win32_util.vcxproj", "{D00761BD-4896-40BA-97AF-5442729B11FF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qconfig_tests", "..\..\tests\project\vs2019\qconfig_tests.vcxproj", "{19F7742C-6FF6-4739-BF5A-FBBB962D5720}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qconfig_tests", "..\..\tests\project\vs\qconfig_tests.vcxproj", "{19F7742C-6FF6-4739-BF5A-FBBB962D5720}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

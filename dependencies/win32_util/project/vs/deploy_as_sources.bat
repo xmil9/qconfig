@@ -1,5 +1,5 @@
 ::
-:: Deploys project and sources of the qconfig library to a given
+:: Deploys project and sources of the win32-util library to a given
 :: directory. Will create a subdirectory for the library.
 :: Example: > .\deploy_as_sources.bat C:\libs
 ::
@@ -10,7 +10,7 @@ set outDir=%1
 set thisDir=%~dp0
 
 set src=%thisDir%..\..
-set dest=%outDir%\qconfig
+set dest=%outDir%\win32_util
 
 :: Deploy code.
 mkdir %dest%
@@ -18,13 +18,12 @@ robocopy %src% %dest% *.h
 robocopy %src% %dest% *.cpp
 
 :: Deploy project.
-set from=%src%\project\vs2019
-set to=%dest%\project\vs2019
+set from=%src%\project\vs
+set to=%dest%\project\vs
 mkdir %to%
-robocopy %from% %to% qconfig.vcxproj
-robocopy %from% %to% qconfig.vcxproj.filters
+robocopy %from% %to% win32_util.vcxproj
+robocopy %from% %to% win32_util.vcxproj.filters
 robocopy %from% %to% deploy_as_sources.bat
 
 :: Deploy dependencies by calling deployment scripts of each dependency.
-call %src%\dependencies\essentutils\project\vs2019\deploy_as_sources.bat %dest%\dependencies
-call %src%\dependencies\win32_util\project\deploy_as_sources.bat %dest%\dependencies
+call %src%\dependencies\essentutils\project\vs\deploy_as_sources.bat %dest%\dependencies
