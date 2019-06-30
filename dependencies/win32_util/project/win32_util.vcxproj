@@ -325,6 +325,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\dependencies\essentutils\project\vs2019\essentutils.vcxproj">
+      <Project>{1c70ff5c-cdc9-426e-9c6a-922919183bab}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="..\device_context.cpp" />
     <ClCompile Include="..\err_util.cpp" />
     <ClCompile Include="..\gdi_object.cpp" />
@@ -346,11 +351,6 @@
     <ClInclude Include="..\win32_util_api.h" />
     <ClInclude Include="..\win32_windows.h" />
     <ClInclude Include="..\window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\essentutils\project\vs2019\essentutils.vcxproj">
-      <Project>{1c70ff5c-cdc9-426e-9c6a-922919183bab}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
