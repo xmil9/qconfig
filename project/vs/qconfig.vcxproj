@@ -35,14 +35,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\dependencies\essentutils\project\vs2019\essentutils.vcxproj">
-      <Project>{1c70ff5c-cdc9-426e-9c6a-922919183bab}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\dependencies\win32_util\project\win32_util.vcxproj">
-      <Project>{d00761bd-4896-40ba-97af-5442729b11ff}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\config.cpp" />
     <ClCompile Include="..\..\file_storage.cpp" />
     <ClCompile Include="..\..\registry_storage.cpp" />
@@ -53,6 +45,14 @@
     <ClInclude Include="..\..\qconfig_api.h" />
     <ClInclude Include="..\..\registry_storage.h" />
     <ClInclude Include="..\..\storage.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dependencies\essentutils\project\vs\essentutils.vcxproj">
+      <Project>{1c70ff5c-cdc9-426e-9c6a-922919183bab}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dependencies\win32_util\project\vs\win32_util.vcxproj">
+      <Project>{d00761bd-4896-40ba-97af-5442729b11ff}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
