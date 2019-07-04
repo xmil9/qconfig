@@ -9,6 +9,7 @@
 #include "config.h"
 #include "file_storage.h"
 #include "test_util.h"
+#include "essentutils/filesys.h"
 #include "win32_util/win32_windows.h"
 #include <array>
 #include <filesystem>
@@ -17,32 +18,13 @@
 
 using namespace qcfg;
 using namespace std;
+using namespace sutil;
 namespace fs = std::filesystem;
 
 
 namespace
 {
 ///////////////////
-
-// Returns the directory that the app's executable is located in.
-fs::path appDirectory()
-{
-#ifdef _WIN32
-   array<char, MAX_PATH> buffer;
-   const DWORD res =
-      GetModuleFileNameA(NULL, buffer.data(), static_cast<DWORD>(buffer.size()));
-   if (res == 0 || GetLastError() == ERROR_INSUFFICIENT_BUFFER)
-      return {};
-
-   fs::path appPath{buffer.data()};
-   appPath.remove_filename();
-
-   return appPath;
-#else
-   assert("todo");
-#endif
-}
-
 
 // Returns the directory that tests can use to load/save data from/to.
 fs::path testDataDirectory()
