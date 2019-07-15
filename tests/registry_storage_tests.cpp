@@ -16,8 +16,6 @@
 #include <string>
 
 using namespace qcfg;
-using namespace std;
-using namespace win32;
 
 
 namespace
@@ -25,7 +23,7 @@ namespace
 ///////////////////
 
 const HKEY TestsRegHive = HKEY_CURRENT_USER;
-const wstring TestsKeyPath = L"Software\\Projects\\qconfig\\tests";
+const std::wstring TestsKeyPath = L"Software\\Projects\\qconfig\\tests";
 
 
 ///////////////////
@@ -33,8 +31,8 @@ const wstring TestsKeyPath = L"Software\\Projects\\qconfig\\tests";
 void testRegistryStorageSave()
 {
    {
-      const string caseLabel = "RegistryStorage::save";
-      const wstring keyPath = TestsKeyPath + L"\\save";
+      const std::string caseLabel = "RegistryStorage::save";
+      const std::wstring keyPath = TestsKeyPath + L"\\save";
 
       Config config;
       config.setString("test", "hello");
@@ -43,22 +41,22 @@ void testRegistryStorageSave()
       const bool saved = config.save(storage);
 
       VERIFY(saved, caseLabel);
-      VERIFY(RegKey::keyExists(TestsRegHive, keyPath), caseLabel);
+      VERIFY(win32::RegKey::keyExists(TestsRegHive, keyPath), caseLabel);
 
-      RegKey::removeKey(TestsRegHive, keyPath);
+      win32::RegKey::removeKey(TestsRegHive, keyPath);
    }
    {
-      const string caseLabel = "RegistryStorage::save empty config";
-      const wstring keyPath = TestsKeyPath + L"\\save_empty";
+      const std::string caseLabel = "RegistryStorage::save empty config";
+      const std::wstring keyPath = TestsKeyPath + L"\\save_empty";
 
       Config config;
       RegistryStorage storage{TestsRegHive, keyPath};
       const bool saved = config.save(storage);
 
       VERIFY(saved, caseLabel);
-      VERIFY(RegKey::keyExists(TestsRegHive, keyPath), caseLabel);
+      VERIFY(win32::RegKey::keyExists(TestsRegHive, keyPath), caseLabel);
 
-      RegKey::removeKey(TestsRegHive, keyPath);
+      win32::RegKey::removeKey(TestsRegHive, keyPath);
    }
 }
 
@@ -66,11 +64,11 @@ void testRegistryStorageSave()
 void testRegistryStorageLoad()
 {
    {
-      const string caseLabel = "RegistryStorage::load existing config file";
-      const wstring keyPath = TestsKeyPath + L"\\load";
+      const std::string caseLabel = "RegistryStorage::load existing config file";
+      const std::wstring keyPath = TestsKeyPath + L"\\load";
 
       {
-         RegKey setup{TestsRegHive, keyPath};
+         win32::RegKey setup{TestsRegHive, keyPath};
          setup.writeString(L"a", "1");
          setup.writeString(L"b", "two");
       }
@@ -83,14 +81,14 @@ void testRegistryStorageLoad()
       VERIFY(config.getInt32("a") == 1, caseLabel);
       VERIFY(config.getString("b") == "two", caseLabel);
 
-      RegKey::removeKey(TestsRegHive, keyPath);
+      win32::RegKey::removeKey(TestsRegHive, keyPath);
    }
    {
-      const string caseLabel = "RegistryStorage::load empty config file";
-      const wstring keyPath = TestsKeyPath + L"\\load_empty";
+      const std::string caseLabel = "RegistryStorage::load empty config file";
+      const std::wstring keyPath = TestsKeyPath + L"\\load_empty";
 
       {
-         RegKey setup{TestsRegHive, keyPath};
+         win32::RegKey setup{TestsRegHive, keyPath};
       }
 
       Config config;
@@ -99,9 +97,9 @@ void testRegistryStorageLoad()
       const bool loaded = config.load(storage);
 
       VERIFY(loaded, caseLabel);
-      VERIFY(config.getString("previous") == nullopt, caseLabel);
+      VERIFY(config.getString("previous") == std::nullopt, caseLabel);
 
-      RegKey::removeKey(TestsRegHive, keyPath);
+      win32::RegKey::removeKey(TestsRegHive, keyPath);
    }
 }
 
@@ -109,8 +107,8 @@ void testRegistryStorageLoad()
 void testRegistryStorageRoundtrip()
 {
    {
-      const string caseLabel = "RegistryStorage save/load roundtrip";
-      const wstring keyPath = TestsKeyPath + L"\\roundtrip";
+      const std::string caseLabel = "RegistryStorage save/load roundtrip";
+      const std::wstring keyPath = TestsKeyPath + L"\\roundtrip";
 
       Config config;
       config.setInt64("int64", 64);
@@ -145,7 +143,7 @@ void testRegistryStorageRoundtrip()
          VERIFY(loadedConfig.getWString("wstring") == L"my wstring", caseLabel);
       }
 
-      RegKey::removeKey(TestsRegHive, keyPath);
+      win32::RegKey::removeKey(TestsRegHive, keyPath);
    }
 }
 

@@ -17,8 +17,6 @@
 #include <string>
 
 using namespace qcfg;
-using namespace std;
-using namespace sutil;
 namespace fs = std::filesystem;
 
 
@@ -29,7 +27,7 @@ namespace
 // Returns the directory that tests can use to load/save data from/to.
 fs::path testDataDirectory()
 {
-   fs::path dataDir = appDirectory();
+   fs::path dataDir = sutil::appDirectory();
 
 #ifdef _WIN32 // windows
 #ifdef _WIN64 // x64
@@ -53,7 +51,7 @@ fs::path testDataDirectory()
 void testFileStorageSave(const fs::path& dataDir)
 {
    {
-      const string caseLabel = "FileStorage::save";
+      const std::string caseLabel = "FileStorage::save";
       const fs::path caseDir = dataDir / "file_storage_save";
       fs::create_directories(caseDir);
       const fs::path filePath = caseDir / "config.txt";
@@ -65,7 +63,7 @@ void testFileStorageSave(const fs::path& dataDir)
       FileStorage storage{filePath};
       const bool saved = config.save(storage);
 
-      error_code errCode;
+      std::error_code errCode;
       const bool fileExists = fs::exists(filePath, errCode);
 
       VERIFY(saved, caseLabel);
@@ -74,7 +72,7 @@ void testFileStorageSave(const fs::path& dataDir)
       fs::remove_all(caseDir);
    }
    {
-      const string caseLabel = "FileStorage::save empty config";
+      const std::string caseLabel = "FileStorage::save empty config";
       const fs::path caseDir = dataDir / "file_storage_save_empty";
       fs::create_directories(caseDir);
       const fs::path filePath = caseDir / "config.txt";
@@ -84,7 +82,7 @@ void testFileStorageSave(const fs::path& dataDir)
       FileStorage storage{filePath};
       const bool saved = config.save(storage);
 
-      error_code errCode;
+      std::error_code errCode;
       const bool fileExists = fs::exists(filePath, errCode);
 
       VERIFY(saved, caseLabel);
@@ -98,7 +96,7 @@ void testFileStorageSave(const fs::path& dataDir)
 void testFileStorageLoad(const fs::path& dataDir)
 {
    {
-      const string caseLabel = "FileStorage::load existing config file";
+      const std::string caseLabel = "FileStorage::load existing config file";
       const fs::path caseDir = dataDir / "file_storage_load";
       const fs::path filePath = caseDir / "config.txt ";
 
@@ -111,7 +109,7 @@ void testFileStorageLoad(const fs::path& dataDir)
       VERIFY(config.getString("b") == "two", caseLabel);
    }
    {
-      const string caseLabel = "FileStorage::load config file with comments";
+      const std::string caseLabel = "FileStorage::load config file with comments";
       const fs::path caseDir = dataDir / "file_storage_load";
       const fs::path filePath = caseDir / "config_comments.txt ";
 
@@ -124,7 +122,7 @@ void testFileStorageLoad(const fs::path& dataDir)
       VERIFY(config.getString("b") == "two", caseLabel);
    }
    {
-      const string caseLabel = "FileStorage::load empty config file";
+      const std::string caseLabel = "FileStorage::load empty config file";
       const fs::path caseDir = dataDir / "file_storage_load";
       const fs::path filePath = caseDir / "config_empty.txt ";
 
@@ -134,7 +132,7 @@ void testFileStorageLoad(const fs::path& dataDir)
       const bool loaded = config.load(storage);
 
       VERIFY(loaded, caseLabel);
-      VERIFY(config.getString("previous") == nullopt, caseLabel);
+      VERIFY(config.getString("previous") == std::nullopt, caseLabel);
    }
 }
 
@@ -142,7 +140,7 @@ void testFileStorageLoad(const fs::path& dataDir)
 void testFileStorageRoundtrip(const fs::path& dataDir)
 {
    {
-      const string caseLabel = "FileStorage save/load roundtrip";
+      const std::string caseLabel = "FileStorage save/load roundtrip";
       const fs::path caseDir = dataDir / "file_storage_roundtrip";
       fs::create_directories(caseDir);
       const fs::path filePath = caseDir / "config.txt";
